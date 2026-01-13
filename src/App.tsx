@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Header } from '@/components/Layout/Header';
 import { MapContainer } from '@/components/Map/MapContainer';
-import { MapLegend } from '@/components/Map/MapLegend';
+//import { MapLegend } from '@/components/Map/MapLegend';
 import { LayerControls } from '@/components/Map/LayerControls';
 import '@/styles/globals.css';
 import '@/styles/map.css';
@@ -25,9 +25,9 @@ function App() {
         setLayers([...collections])
 
         // Take the name property of each collection and set it's initial visibility to true
-        const layerNames = collections.map((fc) => fc.name )
+        const layerNames = collections.map((fc) => fc.name)
         const visibilityMap = layerNames.reduce((map, name) => { map[name] = true; return map }, {} as LayerVisibilityMap)
-        setLayerVisibility({...visibilityMap})
+        setLayerVisibility({ ...visibilityMap })
       },)
   }, [])
 

@@ -2,7 +2,7 @@
 import React from 'react'
 import { GeoJSON } from 'react-leaflet'
 import type { FeatureCollection } from '@/types/geometry'
-import type { Feature } from 'geojson'
+//import type { Feature } from 'geojson'
 
 interface LayerProps {
   featureCollection: FeatureCollection

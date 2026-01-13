@@ -4,7 +4,7 @@ import {
   TileLayer,
 } from 'react-leaflet';
 import { Layer } from './Layer'
-import { Icon } from 'leaflet';
+//import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { FeatureCollection } from '@/types/geometry';
 
@@ -79,15 +79,15 @@ export const MapContainer: React.FC<MapContainerProps> = ({
         className="map-container"
         attributionControl={false}
       >
-      {/* OpenStreetMap base layer */}
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+        {/* OpenStreetMap base layer */}
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
 
-      {layers.map((layer, idx) => (
-        <Layer key={idx} featureCollection={layer} />
-      ))}
+        {layers.map((layer, idx) => (
+          <Layer key={idx} featureCollection={layer} />
+        ))}
       </LeafletMapContainer>
     </div>
   );
