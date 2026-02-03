@@ -3,8 +3,9 @@ import {
   MapContainer as LeafletMapContainer,
   TileLayer,
 } from 'react-leaflet';
+import { Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { Layer } from './Layer'
-//import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { FeatureCollection } from '@/types/geometry';
 
@@ -27,6 +28,21 @@ Icon.Default.mergeOptions({
  * @property {MapPoint[]} points - Array of map points to display (landmarks, animals, etc.)
  * @property {MapArea[]} areas - Array of map areas to display (zones, water bodies, etc.)
  */
+const MapWrapper = styled(Box)({
+  height: '100%',
+  width: '100%',
+  borderRadius: 16,
+  overflow: 'hidden',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+});
+
+const StyledLeafletMap = styled(LeafletMapContainer)({
+  height: '100%',
+  width: '100%',
+  borderRadius: 16,
+});
+
 interface MapContainerProps {
   layers: FeatureCollection[]
 }
@@ -67,16 +83,12 @@ const createCustomIcon = (type: string): Icon => {
  * @param {MapContainerProps} props - The properties that define the map's data
  * @returns {JSX.Element} A Leaflet map with markers and polygons
  */
-export const MapContainer: React.FC<MapContainerProps> = ({
-  layers
-}) => {
+export const MapContainer: React.FC<MapContainerProps> = ({ layers }) => {
   return (
-    <div className="map-wrapper">
-      <LeafletMapContainer
+    <MapWrapper>
+      <StyledLeafletMap
         center={[-3.1319, -60.0261]}
         zoom={11}
-        style={{ height: '100%', width: '100%' }}
-        className="map-container"
         attributionControl={false}
       >
         {/* OpenStreetMap base layer */}
@@ -88,7 +100,7 @@ export const MapContainer: React.FC<MapContainerProps> = ({
         {layers.map((layer, idx) => (
           <Layer key={idx} featureCollection={layer} />
         ))}
-      </LeafletMapContainer>
-    </div>
+      </StyledLeafletMap>
+    </MapWrapper>
   );
 };
